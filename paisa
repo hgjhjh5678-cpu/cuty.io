@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ver Video</title>
+
+<style>
+    body {
+        background: #111;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        margin-top: 40px;
+    }
+
+    #clickArea {
+        width: 90%;
+        max-width: 600px;
+        height: 200px;
+        background: #222;
+        border-radius: 10px;
+        margin: 40px auto 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border: 2px dashed #444;
+        font-size: 20px;
+    }
+
+    #videoBox {
+        display: none;
+        margin-top: 25px;
+    }
+
+    /* VIDEO RESPONSIVE */
+    .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 900px;
+        margin: auto;
+        padding-bottom: 56.25%; /* 16:9 */
+        height: 0;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 10px;
+    }
+</style>
+</head>
+
+<body>
+
+<h2>Haz clic para ver el video</h2>
+
+<div id="clickArea">Haz clic aquí…</div>
+
+<div id="videoBox">
+    <div class="video-container">
+        <!-- CAMBIA ESTE ENLACE POR VIDEY O GOOGLE DRIVE -->
+        <iframe src="https://drive.google.com/file/d/15AxztdSSpq07lUPMK01vPtgshR4itecv/preview" width="640" height="480"></iframe>
+    </div>
+</div>
+
+<script>
+    let clicks = 0;
+
+    const direct = "https://www.effectivegatecpm.com/k0wmg7j4g?key=2dc05e69712b2793aa475e1b8681410d";
+
+    const clickArea = document.getElementById("clickArea");
+    const videoBox = document.getElementById("videoBox");
+
+    clickArea.addEventListener("click", () => {
+
+        clicks++;
+
+        if (clicks <= 2) {
+            window.open(direct, "_blank");
+        }
+
+        if (clicks === 3) {
+            clickArea.style.display = "none";
+            videoBox.style.display = "block";
+        }
+    });
+</script>
+
+</body>
+</html>
