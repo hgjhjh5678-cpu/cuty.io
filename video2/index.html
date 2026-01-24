@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Video 2</title>
+<style>
+    body {
+        background: #111;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+    h2 {
+        margin-top: 40px;
+    }
+    #msg {
+        margin-top: 15px;
+        font-size: 18px;
+        opacity: 0.8;
+    }
+    #videoBox {
+        margin-top: 25px;
+        display: none;
+    }
+    iframe {
+        width: 90%;
+        max-width: 600px;
+        height: 350px;
+        border: none;
+        border-radius: 10px;
+    }
+    #clickArea {
+        width: 90%;
+        max-width: 600px;
+        height: 200px;
+        background: #222;
+        border-radius: 10px;
+        margin: 30px auto 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border: 2px dashed #444;
+    }
+</style>
+</head>
+<body>
+
+<h2>Haz clic para ver el Video 2</h2>
+
+<div id="clickArea">
+    <span>Haz clic aquí…</span>
+</div>
+
+<div id="msg">Publicidad pendiente (0/2)…</div>
+
+<div id="videoBox">
+    <iframe src="https://drive.google.com/file/d/12bf4lEFU7yKRcb6tx0iwNggmAcV0KuZy/preview" allowfullscreen></iframe>
+</div>
+
+<script>
+    let clicks = 0;
+    const direct = "https://www.effectivegatecpm.com/k0wmg7j4g?key=2dc05e69712b2793aa475e1b8681410d";
+
+    const clickArea = document.getElementById("clickArea");
+    const msg = document.getElementById("msg");
+    const videoBox = document.getElementById("videoBox");
+
+    clickArea.addEventListener("click", () => {
+        if (clicks < 2) {
+            window.open(direct, "_blank");
+            clicks++;
+            msg.textContent = `Publicidad mostrada (${clicks}/2)…`;
+        }
+
+        if (clicks === 2) {
+            clickArea.style.display = "none";
+            videoBox.style.display = "block";
+            msg.textContent = "Disfruta el video";
+        }
+    });
+</script>
+
+</body>
+</html>
