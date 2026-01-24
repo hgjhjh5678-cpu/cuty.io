@@ -14,37 +14,12 @@
         padding: 0;
     }
 
-    h2 {
-        margin-top: 40px;
-    }
-
-    #clickArea {
-        width: 90%;
-        max-width: 600px;
-        height: 200px;
-        background: #222;
-        border-radius: 10px;
-        margin: 40px auto 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        border: 2px dashed #444;
-        font-size: 20px;
-    }
-
-    #videoBox {
-        display: none;
-        margin-top: 25px;
-    }
-
-    /* VIDEO RESPONSIVE */
     .video-container {
         position: relative;
-        width: 100%;
+        width: 90%;
         max-width: 900px;
-        margin: auto;
-        padding-bottom: 56.25%; /* 16:9 */
+        margin: 40px auto;
+        padding-bottom: 56.25%;
         height: 0;
     }
 
@@ -56,21 +31,31 @@
         height: 100%;
         border: none;
         border-radius: 10px;
+        pointer-events: none; /* DESACTIVA el video hasta el 3er clic */
+    }
+
+    /* Capa invisible encima del video para detectar los clics */
+    #clickLayer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        z-index: 10;
     }
 </style>
 </head>
 
 <body>
 
-<h2>Haz clic para ver el video</h2>
+<h2>Video</h2>
 
-<div id="clickArea">Haz clic aquí…</div>
+<div class="video-container">
+    <div id="clickLayer"></div>
 
-<div id="videoBox">
-    <div class="video-container">
-        <!-- CAMBIA ESTE ENLACE POR VIDEY O GOOGLE DRIVE -->
-        <iframe src="https://drive.google.com/file/d/15AxztdSSpq07lUPMK01vPtgshR4itecv/preview" width="640" height="480"></iframe>
-    </div>
+    <!-- TU VIDEO AQUÍ (Drive, Videy, lo que quieras) -->
+    <iframe src="https://drive.google.com/file/d/15AxztdSSpq07lUPMK01vPtgshR4itecv/preview" width="640" height="480"></iframe>
 </div>
 
 <script>
@@ -78,10 +63,10 @@
 
     const direct = "https://www.effectivegatecpm.com/k0wmg7j4g?key=2dc05e69712b2793aa475e1b8681410d";
 
-    const clickArea = document.getElementById("clickArea");
-    const videoBox = document.getElementById("videoBox");
+    const clickLayer = document.getElementById("clickLayer");
+    const videoFrame = document.getElementById("videoFrame");
 
-    clickArea.addEventListener("click", () => {
+    clickLayer.addEventListener("click", () => {
 
         clicks++;
 
@@ -90,8 +75,8 @@
         }
 
         if (clicks === 3) {
-            clickArea.style.display = "none";
-            videoBox.style.display = "block";
+            clickLayer.style.display = "none";     // Quita la capa
+            videoFrame.style.pointerEvents = "auto"; // Activa el video
         }
     });
 </script>
