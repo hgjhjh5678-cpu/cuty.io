@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ver Video</title>
+
+<style>
+    body {
+        background: #111;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .video-container {
+        position: relative;
+        width: 90%;
+        max-width: 900px;
+        margin: 40px auto;
+    }
+
+    video {
+        width: 100%;
+        border-radius: 10px;
+        background: #000;
+    }
+
+    /* Capa invisible encima del video */
+    #clickLayer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        z-index: 10;
+        background: rgba(0,0,0,0); /* invisible */
+    }
+</style>
+</head>
+
+<body>
+
+<h2>Video</h2>
+
+<div class="video-container">
+    <div id="clickLayer"></div>
+
+    <!-- VIDEO MP4 DIRECTO (FULLSCREEN EN MÓVIL) -->
+    <video id="videoPlayer" controls playsinline>
+        <source src="https://cdn.videy.co/ExgL83Lj1.mp4" type="video/mp4">
+    </video>
+</div>
+
+<script>
+    let clicks = 0;
+
+    const direct = "https://www.effectivegatecpm.com/k0wmg7j4g?key=2dc05e69712b2793aa475e1b8681410d";
+
+    const clickLayer = document.getElementById("clickLayer");
+    const videoPlayer = document.getElementById("videoPlayer");
+
+    clickLayer.addEventListener("click", () => {
+
+        clicks++;
+
+        if (clicks <= 2) {
+            window.open(direct, "_blank");
+        }
+
+        if (clicks === 3) {
+            clickLayer.style.display = "none"; // Quita la capa
+            videoPlayer.play();               // Reproduce automáticamente
+        }
+    });
+</script>
+
+</body>
+</html>
